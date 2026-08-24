@@ -1,0 +1,123 @@
+:host {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-cabecalho);
+  display: block;
+  background-color: var(--bg);
+
+  /* A borda inferior está SEMPRE no DOM. Entre os estados muda só a cor —
+     nunca inserimos ou removemos o elemento (evita salto de layout). */
+  border-bottom: 1px solid transparent;
+
+  transition:
+    transform var(--duracao-media) var(--curva),
+    background-color var(--duracao-media) var(--curva),
+    border-color var(--duracao-media) var(--curva),
+    box-shadow var(--duracao-media) var(--curva);
+}
+
+/* Rolando para baixo: o cabeçalho sai de cena sem sair do DOM. */
+:host(.esta-oculto) {
+  transform: translateY(-100%);
+}
+
+/* Fora do topo: a borda ganha cor e o fundo vira superfície. */
+:host(.esta-rolado) {
+  background-color: var(--surface);
+  border-bottom-color: var(--border);
+  box-shadow: var(--sombra-cabecalho);
+}
+
+.cabecalho__interno {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-4);
+  min-height: var(--altura-cabecalho);
+  padding: 0 var(--esp-5);
+}
+
+.cabecalho__esquerda,
+.cabecalho__direita {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-3);
+}
+
+.cabecalho__hamburguer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: var(--raio-controle);
+  color: var(--text-2);
+  transition:
+    color var(--duracao-rapida) var(--curva),
+    background-color var(--duracao-rapida) var(--curva),
+    border-color var(--duracao-rapida) var(--curva);
+
+  &:hover {
+    color: var(--text);
+    background-color: var(--surface-2);
+    border-color: var(--border-forte);
+  }
+}
+
+.cabecalho__logo {
+  display: inline-flex;
+  border-radius: var(--raio-controle);
+}
+
+.cabecalho__saudacao {
+  display: none;
+  font-size: var(--tamanho-base);
+  color: var(--text-2);
+
+  strong {
+    font-weight: var(--peso-semi);
+    color: var(--text);
+  }
+}
+
+.cabecalho__perfil {
+  display: none;
+}
+
+.cabecalho__sair {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: var(--raio-controle);
+  color: var(--text-2);
+  transition:
+    color var(--duracao-rapida) var(--curva),
+    background-color var(--duracao-rapida) var(--curva),
+    border-color var(--duracao-rapida) var(--curva);
+
+  &:hover {
+    color: var(--negative);
+    background-color: var(--negative-suave);
+    border-color: transparent;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cabecalho__hamburguer,
+  .cabecalho__logo {
+    display: none;
+  }
+
+  .cabecalho__saudacao,
+  .cabecalho__perfil {
+    display: inline-flex;
+  }
+
+  .cabecalho__sair {
+    display: inline-flex;
+  }
+}

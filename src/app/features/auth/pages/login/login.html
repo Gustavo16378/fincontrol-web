@@ -1,0 +1,40 @@
+<app-moldura-auth [titulo]="textos.titulo" [subtitulo]="textos.subtitulo">
+  <form class="formulario" [formGroup]="formulario" (ngSubmit)="enviar()" novalidate>
+    @if (erro(); as mensagem) {
+      <app-alerta>{{ mensagem }}</app-alerta>
+    }
+
+    <app-campo
+      [controle]="formulario.controls.email"
+      [rotulo]="textos.email"
+      [tipo]="'email'"
+      [placeholder]="textos.emailPlaceholder"
+      [autocomplete]="'email'"
+      [icone]="'email'"
+    />
+
+    <app-campo
+      [controle]="formulario.controls.senha"
+      [rotulo]="textos.senha"
+      [tipo]="'password'"
+      [placeholder]="textos.senhaPlaceholder"
+      [autocomplete]="'current-password'"
+      [icone]="'cadeado'"
+    />
+
+    <app-botao
+      class="formulario__envio"
+      [tipo]="'submit'"
+      [tamanho]="'lg'"
+      [larguraTotal]="true"
+      [carregando]="enviando()"
+    >
+      {{ enviando() ? textos.enviando : textos.enviar }}
+    </app-botao>
+  </form>
+
+  <ng-container rodape>
+    {{ textos.chamadaCadastro }}
+    <a class="formulario__link" [routerLink]="rotas.cadastro">{{ textos.linkCadastro }}</a>
+  </ng-container>
+</app-moldura-auth>

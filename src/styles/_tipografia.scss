@@ -1,0 +1,83 @@
+/* =============================================================================
+   Tipografia
+   -----------------------------------------------------------------------------
+   Fraunces  → títulos e números grandes (voz editorial da marca)
+   Inter     → corpo, labels, tabelas
+   As famílias são carregadas via <link> do Google Fonts no index.html.
+   ========================================================================== */
+
+body {
+  font-family: var(--fonte-corpo);
+  font-size: var(--tamanho-base);
+  font-weight: var(--peso-normal);
+  line-height: var(--altura-linha-padrao);
+  color: var(--text);
+  background-color: var(--bg);
+  transition:
+    background-color var(--duracao-media) var(--curva),
+    color var(--duracao-media) var(--curva);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fonte-titulo);
+  font-weight: var(--peso-semi);
+  line-height: var(--altura-linha-apertada);
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+
+h1 {
+  font-size: var(--tamanho-xl);
+}
+
+h2 {
+  font-size: var(--tamanho-lg);
+}
+
+h3 {
+  font-size: var(--tamanho-md);
+}
+
+h4,
+h5,
+h6 {
+  font-family: var(--fonte-corpo);
+  font-weight: var(--peso-semi);
+  font-size: var(--tamanho-base);
+  line-height: var(--altura-linha-padrao);
+}
+
+small {
+  font-size: var(--tamanho-sm);
+}
+
+/* Qualquer número que o usuário compare em coluna precisa alinhar. */
+.numerico,
+.valor-monetario,
+td[data-numerico],
+[data-numerico='true'] {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* Números grandes de destaque (saldos, totais) usam a voz editorial. */
+.numero-destaque {
+  font-family: var(--fonte-titulo);
+  font-size: var(--tamanho-2xl);
+  font-weight: var(--peso-semi);
+  line-height: var(--altura-linha-apertada);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+  letter-spacing: -0.02em;
+}
+
+.texto-secundario {
+  color: var(--text-2);
+}
+
+.texto-terciario {
+  color: var(--text-3);
+  font-size: var(--tamanho-sm);
+}

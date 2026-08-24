@@ -1,0 +1,116 @@
+<app-moldura-auth [titulo]="textos.titulo" [subtitulo]="textos.subtitulo">
+  <form class="formulario" [formGroup]="formulario" (ngSubmit)="enviar()" novalidate>
+    @if (erro(); as mensagem) {
+      <app-alerta>{{ mensagem }}</app-alerta>
+    }
+
+    <app-campo
+      [controle]="formulario.controls.nome"
+      [rotulo]="textos.nome"
+      [placeholder]="textos.nomePlaceholder"
+      [autocomplete]="'name'"
+      [icone]="'perfil'"
+    />
+
+    <app-campo
+      [controle]="formulario.controls.email"
+      [rotulo]="textos.email"
+      [tipo]="'email'"
+      [placeholder]="textos.emailPlaceholder"
+      [autocomplete]="'email'"
+      [icone]="'email'"
+    />
+
+    <app-campo
+      [controle]="formulario.controls.senha"
+      [rotulo]="textos.senha"
+      [tipo]="'password'"
+      [placeholder]="textos.senhaPlaceholder"
+      [autocomplete]="'new-password'"
+      [icone]="'cadeado'"
+    />
+
+    <app-campo
+      [controle]="formulario.controls.confirmacao"
+      [rotulo]="textos.confirmacao"
+      [tipo]="'password'"
+      [placeholder]="textos.confirmacaoPlaceholder"
+      [autocomplete]="'new-password'"
+      [icone]="'cadeado'"
+    />
+
+    <fieldset class="grupo">
+      <legend class="grupo__titulo">{{ textos.perfilFiscalTitulo }}</legend>
+      <p class="grupo__ajuda">{{ textos.perfilFiscalAjuda }}</p>
+
+      <div class="cartoes">
+        @for (opcao of perfis; track opcao.valor) {
+          <label
+            class="cartao"
+            [class.cartao--ativo]="formulario.controls.perfilFiscal.value === opcao.valor"
+          >
+            <input
+              class="apenas-leitor-de-tela"
+              type="radio"
+              formControlName="perfilFiscal"
+              [value]="opcao.valor"
+            />
+            <span class="cartao__icone" aria-hidden="true">
+              <app-icone [nome]="opcao.icone" [tamanho]="20" />
+            </span>
+            <span class="cartao__rotulo">{{ opcao.rotulo }}</span>
+            <span class="cartao__descricao">{{ opcao.descricao }}</span>
+          </label>
+        }
+      </div>
+
+      @if (erroPerfil()) {
+        <p class="grupo__erro" role="alert">{{ validacao.perfilFiscal }}</p>
+      }
+    </fieldset>
+
+    @if (ehMei()) {
+      <fieldset class="grupo">
+        <legend class="grupo__titulo">{{ textos.atividadeMeiTitulo }}</legend>
+        <p class="grupo__ajuda">{{ textos.atividadeMeiAjuda }}</p>
+
+        <div class="atividades">
+          @for (opcao of atividades; track opcao.valor) {
+            <label
+              class="atividade"
+              [class.atividade--ativa]="formulario.controls.atividadeMei.value === opcao.valor"
+            >
+              <input
+                class="apenas-leitor-de-tela"
+                type="radio"
+                formControlName="atividadeMei"
+                [value]="opcao.valor"
+              />
+              <app-icone [nome]="opcao.icone" [tamanho]="18" />
+              <span>{{ opcao.rotulo }}</span>
+            </label>
+          }
+        </div>
+
+        @if (erroAtividade()) {
+          <p class="grupo__erro" role="alert">{{ validacao.atividadeMei }}</p>
+        }
+      </fieldset>
+    }
+
+    <app-botao
+      class="formulario__envio"
+      [tipo]="'submit'"
+      [tamanho]="'lg'"
+      [larguraTotal]="true"
+      [carregando]="enviando()"
+    >
+      {{ enviando() ? textos.enviando : textos.enviar }}
+    </app-botao>
+  </form>
+
+  <ng-container rodape>
+    {{ textos.chamadaLogin }}
+    <a class="formulario__link" [routerLink]="rotas.login">{{ textos.linkLogin }}</a>
+  </ng-container>
+</app-moldura-auth>

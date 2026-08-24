@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+  background-color: var(--bg);
+}
+
+.shell__lateral {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-barra-lateral);
+  display: none;
+}
+
+.shell__coluna {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  transition: margin-left var(--duracao-media) var(--curva);
+}
+
+.shell__principal {
+  flex: 1;
+  padding-block: var(--esp-8) var(--esp-16);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.shell__area {
+  width: 100%;
+}
+
+.shell__acoes-modal {
+  display: flex;
+  gap: var(--esp-2);
+}
+
+@media (min-width: 1024px) {
+  .shell__lateral {
+    display: flex;
+  }
+
+  .shell__coluna {
+    margin-left: var(--largura-barra-lateral);
+  }
+}

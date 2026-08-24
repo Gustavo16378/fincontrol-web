@@ -1,0 +1,35 @@
+<ng-template #conteudo>
+  <aside class="gaveta" role="dialog" aria-modal="true" [attr.aria-label]="textos.menuMobile">
+    <header class="gaveta__topo">
+      <app-logotipo />
+      <button
+        class="gaveta__fechar"
+        type="button"
+        [attr.aria-label]="textos.fecharMenu"
+        (click)="fechar()"
+      >
+        <app-icone [nome]="'fechar'" [tamanho]="20" />
+      </button>
+    </header>
+
+    <nav class="gaveta__navegacao" [attr.aria-label]="textos.navegacaoPrincipal">
+      <app-lista-navegacao
+        [itens]="principal"
+        [mostrarDescricao]="true"
+        (itemEscolhido)="fechar()"
+      />
+    </nav>
+
+    <div class="gaveta__rodape">
+      <app-lista-navegacao [itens]="secundaria" (itemEscolhido)="fechar()" />
+
+      <div class="gaveta__acoes">
+        <app-alternador-tema />
+        <button class="gaveta__sair" type="button" (click)="sair()">
+          <app-icone [nome]="'sair'" [tamanho]="18" />
+          <span>{{ textos.sair }}</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+</ng-template>

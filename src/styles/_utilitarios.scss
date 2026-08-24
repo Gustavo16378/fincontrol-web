@@ -1,0 +1,68 @@
+/* =============================================================================
+   Utilitários globais — poucos, e só o que é realmente transversal
+   ========================================================================== */
+
+.apenas-leitor-de-tela {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pular-para-conteudo {
+  position: absolute;
+  top: var(--esp-2);
+  left: var(--esp-2);
+  z-index: calc(var(--z-overlay) + 1);
+  padding: var(--esp-2) var(--esp-4);
+  border-radius: var(--raio-controle);
+  background-color: var(--accent);
+  color: var(--accent-contraste);
+  font-weight: var(--peso-medio);
+  transform: translateY(-200%);
+  transition: transform var(--duracao-rapida) var(--curva);
+
+  &:focus {
+    transform: translateY(0);
+  }
+}
+
+.conteiner {
+  width: 100%;
+  max-width: var(--largura-conteudo);
+  margin-inline: auto;
+  padding-inline: var(--esp-5);
+}
+
+/* -----------------------------------------------------------------------------
+   CDK Overlay — o container vive fora do app, então precisa de estilo global.
+   -------------------------------------------------------------------------- */
+.cdk-overlay-container {
+  z-index: var(--z-overlay);
+}
+
+.overlay-fundo {
+  background-color: var(--overlay-fundo);
+  transition: opacity var(--duracao-media) var(--curva);
+}
+
+.overlay-painel {
+  display: flex;
+  max-width: 100vw;
+  max-height: 100dvh;
+}
+
+/* Trava de rolagem estilo iOS: o body vira `position: fixed` e o deslocamento
+   é preservado em `top` pelo ServicoTravaDeScroll. */
+body.scroll-travado {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+}

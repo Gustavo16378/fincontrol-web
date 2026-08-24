@@ -1,0 +1,39 @@
+<a class="pular-para-conteudo" href="#conteudo">{{ textos.pularParaConteudo }}</a>
+
+<app-barra-lateral class="shell__lateral" (sairSolicitado)="pedirSaida()" />
+
+<div class="shell__coluna">
+  <app-cabecalho
+    appDirecaoScroll
+    [appDirecaoScrollDesativado]="menuAberto()"
+    [menuAberto]="menuAberto()"
+    (alternarMenu)="alternarMenu()"
+    (sairSolicitado)="pedirSaida()"
+  />
+
+  <main
+    id="conteudo"
+    class="shell__principal"
+    tabindex="-1"
+    [attr.aria-label]="textos.conteudoPrincipal"
+  >
+    <div class="conteiner shell__area">
+      <router-outlet />
+    </div>
+  </main>
+</div>
+
+<app-menu-mobile [(aberto)]="menuAberto" (sairSolicitado)="pedirSaida()" />
+
+<app-modal
+  [(aberto)]="confirmandoSaida"
+  [titulo]="textos.sairConfirmacaoTitulo"
+  [descricao]="textos.sairConfirmacaoTexto"
+>
+  <div rodape class="shell__acoes-modal">
+    <app-botao [variante]="'secundario'" (click)="confirmandoSaida.set(false)">
+      {{ comum.cancelar }}
+    </app-botao>
+    <app-botao [variante]="'perigo'" (click)="confirmarSaida()">{{ textos.sair }}</app-botao>
+  </div>
+</app-modal>

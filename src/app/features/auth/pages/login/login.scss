@@ -1,0 +1,20 @@
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-5);
+}
+
+.formulario__envio {
+  margin-top: var(--esp-1);
+}
+
+.formulario__link {
+  color: var(--accent);
+  font-weight: var(--peso-medio);
+  transition: color var(--duracao-rapida) var(--curva);
+
+  &:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+  }
+}

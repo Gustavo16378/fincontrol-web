@@ -1,0 +1,7 @@
+/* Estilos globais do FinControl.
+   Ordem importa: tokens primeiro (definem as variáveis), depois reset,
+   tipografia e utilitários. */
+@use 'tokens';
+@use 'reset';
+@use 'tipografia';
+@use 'utilitarios';

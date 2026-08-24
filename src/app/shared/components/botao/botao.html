@@ -1,0 +1,23 @@
+<button
+  class="botao"
+  [class.botao--primario]="variante() === 'primario'"
+  [class.botao--secundario]="variante() === 'secundario'"
+  [class.botao--fantasma]="variante() === 'fantasma'"
+  [class.botao--perigo]="variante() === 'perigo'"
+  [class.botao--sm]="tamanho() === 'sm'"
+  [class.botao--lg]="tamanho() === 'lg'"
+  [class.botao--largura-total]="larguraTotal()"
+  [class.botao--carregando]="carregando()"
+  [attr.type]="tipo()"
+  [attr.aria-label]="rotuloAcessivel()"
+  [attr.aria-busy]="carregando()"
+  [disabled]="desabilitado() || carregando()"
+>
+  @if (carregando()) {
+    <span class="botao__girador" aria-hidden="true"></span>
+  } @else if (icone(); as nomeIcone) {
+    <app-icone [nome]="nomeIcone" [tamanho]="18" />
+  }
+
+  <span class="botao__conteudo"><ng-content /></span>
+</button>

@@ -1,0 +1,11 @@
+# Fim de linha LF em todo lugar, inclusive no checkout do Windows.
+# Sem isso, o autocrlf converte para CRLF e o `npm run lint` (Prettier, que
+# espera LF) quebra num clone novo.
+* text=auto eol=lf
+
+# Binários: nunca normalizar.
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff binary
+*.woff2 binary

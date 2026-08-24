@@ -1,0 +1,27 @@
+<ng-template #conteudo>
+  <div class="modal" role="dialog" aria-modal="true" [attr.aria-labelledby]="idTitulo">
+    <header class="modal__cabecalho">
+      <h2 class="modal__titulo" [id]="idTitulo">{{ titulo() }}</h2>
+      <button
+        class="modal__fechar"
+        type="button"
+        [attr.aria-label]="rotuloFechar"
+        (click)="fechar()"
+      >
+        <app-icone [nome]="'fechar'" [tamanho]="18" />
+      </button>
+    </header>
+
+    @if (descricao(); as texto) {
+      <p class="modal__descricao">{{ texto }}</p>
+    }
+
+    <div class="modal__corpo">
+      <ng-content />
+    </div>
+
+    <footer class="modal__rodape">
+      <ng-content select="[rodape]" />
+    </footer>
+  </div>
+</ng-template>

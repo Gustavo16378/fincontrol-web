@@ -1,0 +1,118 @@
+:host {
+  display: block;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2);
+}
+
+.campo__rotulo {
+  font-size: var(--tamanho-sm);
+  font-weight: var(--peso-medio);
+  color: var(--text-2);
+  letter-spacing: 0.01em;
+}
+
+.campo__caixa {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.campo__icone {
+  position: absolute;
+  left: var(--esp-3);
+  display: inline-flex;
+  color: var(--text-3);
+  pointer-events: none;
+  transition: color var(--duracao-rapida) var(--curva);
+}
+
+.campo__entrada {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--esp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--raio-controle);
+  background-color: var(--surface);
+  color: var(--text);
+  font-size: var(--tamanho-base);
+  transition:
+    border-color var(--duracao-rapida) var(--curva),
+    background-color var(--duracao-rapida) var(--curva),
+    box-shadow var(--duracao-rapida) var(--curva);
+
+  &::placeholder {
+    color: var(--text-3);
+  }
+
+  &:hover:not(:disabled) {
+    border-color: var(--border-forte);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--foco);
+  }
+
+  &:disabled {
+    background-color: var(--surface-2);
+    color: var(--text-3);
+    cursor: not-allowed;
+  }
+}
+
+.campo__entrada--com-icone {
+  padding-left: calc(var(--esp-3) * 2 + 18px);
+}
+
+.campo__entrada--com-acao {
+  padding-right: calc(var(--esp-3) * 2 + 18px);
+}
+
+.campo__acao {
+  position: absolute;
+  right: var(--esp-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--raio-controle);
+  color: var(--text-3);
+  transition:
+    color var(--duracao-rapida) var(--curva),
+    background-color var(--duracao-rapida) var(--curva);
+
+  &:hover {
+    color: var(--text);
+    background-color: var(--surface-2);
+  }
+}
+
+.campo__erro {
+  font-size: var(--tamanho-sm);
+  color: var(--negative);
+}
+
+.campo__dica {
+  font-size: var(--tamanho-sm);
+  color: var(--text-3);
+}
+
+.campo--com-erro {
+  .campo__entrada {
+    border-color: var(--negative);
+
+    &:focus {
+      box-shadow: 0 0 0 3px var(--negative-suave);
+    }
+  }
+
+  .campo__icone {
+    color: var(--negative);
+  }
+}

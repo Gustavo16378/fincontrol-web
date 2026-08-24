@@ -1,0 +1,42 @@
+<div class="cabecalho__interno">
+  <div class="cabecalho__esquerda">
+    <button
+      class="cabecalho__hamburguer"
+      type="button"
+      [attr.aria-label]="menuAberto() ? textos.fecharMenu : textos.abrirMenu"
+      [attr.aria-expanded]="menuAberto()"
+      (click)="alternarMenu.emit()"
+    >
+      <app-icone [nome]="menuAberto() ? 'fechar' : 'menu'" [tamanho]="20" />
+    </button>
+
+    <a class="cabecalho__logo" [routerLink]="rotaInicial">
+      <app-logotipo />
+    </a>
+
+    @if (primeiroNome()) {
+      <!-- &ngsp; garante o espaço: o compilador remove o whitespace da quebra de linha. -->
+      <p class="cabecalho__saudacao">
+        {{ textos.saudacao }},&ngsp;<strong>{{ primeiroNome() }}</strong>
+      </p>
+    }
+  </div>
+
+  <div class="cabecalho__direita">
+    @if (rotuloPerfil(); as perfil) {
+      <app-selo class="cabecalho__perfil" [variante]="'destaque'">{{ perfil }}</app-selo>
+    }
+
+    <app-alternador-tema />
+
+    <button
+      class="cabecalho__sair"
+      type="button"
+      [attr.aria-label]="textos.sair"
+      [attr.title]="textos.sair"
+      (click)="sairSolicitado.emit()"
+    >
+      <app-icone [nome]="'sair'" [tamanho]="18" />
+    </button>
+  </div>
+</div>

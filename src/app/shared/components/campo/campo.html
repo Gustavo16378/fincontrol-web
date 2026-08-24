@@ -1,0 +1,42 @@
+<div class="campo" [class.campo--com-erro]="erro() !== null">
+  <label class="campo__rotulo" [attr.for]="idCampo">{{ rotulo() }}</label>
+
+  <div class="campo__caixa">
+    @if (icone(); as nomeIcone) {
+      <span class="campo__icone" aria-hidden="true">
+        <app-icone [nome]="nomeIcone" [tamanho]="18" />
+      </span>
+    }
+
+    <input
+      class="campo__entrada"
+      [class.campo__entrada--com-icone]="icone() !== null"
+      [class.campo__entrada--com-acao]="ehSenha()"
+      [id]="idCampo"
+      [type]="tipoEfetivo()"
+      [formControl]="controle()"
+      [placeholder]="placeholder()"
+      [attr.autocomplete]="autocomplete()"
+      [attr.aria-invalid]="erro() !== null"
+      [attr.aria-describedby]="erro() !== null ? idErro : null"
+    />
+
+    @if (ehSenha()) {
+      <button
+        class="campo__acao"
+        type="button"
+        [attr.aria-label]="senhaVisivel() ? textos.ocultarSenha : textos.mostrarSenha"
+        [attr.aria-pressed]="senhaVisivel()"
+        (click)="alternarSenha()"
+      >
+        <app-icone [nome]="senhaVisivel() ? 'olhoFechado' : 'olho'" [tamanho]="18" />
+      </button>
+    }
+  </div>
+
+  @if (erro(); as mensagem) {
+    <p class="campo__erro" [id]="idErro" role="alert">{{ mensagem }}</p>
+  } @else if (dica(); as textoDica) {
+    <p class="campo__dica">{{ textoDica }}</p>
+  }
+</div>

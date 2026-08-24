@@ -1,0 +1,160 @@
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-5);
+}
+
+.formulario__envio {
+  margin-top: var(--esp-1);
+}
+
+.formulario__link {
+  color: var(--accent);
+  font-weight: var(--peso-medio);
+  transition: color var(--duracao-rapida) var(--curva);
+
+  &:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+  }
+}
+
+.grupo {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.grupo__titulo {
+  padding: 0;
+  font-size: var(--tamanho-sm);
+  font-weight: var(--peso-medio);
+  color: var(--text-2);
+}
+
+.grupo__ajuda {
+  margin-top: var(--esp-1);
+  margin-bottom: var(--esp-3);
+  font-size: var(--tamanho-xs);
+  color: var(--text-3);
+}
+
+.grupo__erro {
+  margin-top: var(--esp-2);
+  font-size: var(--tamanho-sm);
+  color: var(--negative);
+}
+
+.cartoes {
+  display: grid;
+  gap: var(--esp-3);
+}
+
+.cartao {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'icone rotulo'
+    'icone descricao';
+  align-items: center;
+  gap: 0 var(--esp-3);
+  padding: var(--esp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--raio-card);
+  background-color: var(--surface);
+  cursor: pointer;
+  transition:
+    border-color var(--duracao-rapida) var(--curva),
+    background-color var(--duracao-rapida) var(--curva),
+    box-shadow var(--duracao-rapida) var(--curva);
+
+  &:hover {
+    border-color: var(--border-forte);
+  }
+
+  &:has(input:focus-visible) {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--foco);
+  }
+}
+
+.cartao--ativo {
+  border-color: var(--accent);
+  background-color: var(--accent-suave);
+
+  .cartao__icone {
+    background-color: var(--accent);
+    color: var(--accent-contraste);
+  }
+}
+
+.cartao__icone {
+  grid-area: icone;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--raio-controle);
+  background-color: var(--surface-2);
+  color: var(--text-2);
+  transition:
+    background-color var(--duracao-rapida) var(--curva),
+    color var(--duracao-rapida) var(--curva);
+}
+
+.cartao__rotulo {
+  grid-area: rotulo;
+  font-weight: var(--peso-semi);
+  color: var(--text);
+}
+
+.cartao__descricao {
+  grid-area: descricao;
+  font-size: var(--tamanho-xs);
+  color: var(--text-2);
+  line-height: 1.4;
+}
+
+.atividades {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--esp-2);
+}
+
+.atividade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--esp-2);
+  padding: var(--esp-3) var(--esp-2);
+  border: 1px solid var(--border);
+  border-radius: var(--raio-controle);
+  background-color: var(--surface);
+  color: var(--text-2);
+  font-size: var(--tamanho-sm);
+  font-weight: var(--peso-medio);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color var(--duracao-rapida) var(--curva),
+    background-color var(--duracao-rapida) var(--curva),
+    color var(--duracao-rapida) var(--curva),
+    box-shadow var(--duracao-rapida) var(--curva);
+
+  &:hover {
+    border-color: var(--border-forte);
+    color: var(--text);
+  }
+
+  &:has(input:focus-visible) {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--foco);
+  }
+}
+
+.atividade--ativa {
+  border-color: var(--accent);
+  background-color: var(--accent-suave);
+  color: var(--accent);
+}

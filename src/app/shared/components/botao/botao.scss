@@ -1,0 +1,119 @@
+:host {
+  display: inline-flex;
+}
+
+:host(.bloco),
+.botao--largura-total {
+  width: 100%;
+}
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  min-height: 42px;
+  padding: 0 var(--esp-5);
+  border: 1px solid transparent;
+  border-radius: var(--raio-controle);
+  font-family: var(--fonte-corpo);
+  font-size: var(--tamanho-base);
+  font-weight: var(--peso-medio);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--duracao-rapida) var(--curva),
+    border-color var(--duracao-rapida) var(--curva),
+    color var(--duracao-rapida) var(--curva),
+    box-shadow var(--duracao-rapida) var(--curva),
+    opacity var(--duracao-rapida) var(--curva),
+    transform var(--duracao-rapida) var(--curva);
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+}
+
+.botao--sm {
+  min-height: 34px;
+  padding: 0 var(--esp-3);
+  font-size: var(--tamanho-sm);
+}
+
+.botao--lg {
+  min-height: 50px;
+  padding: 0 var(--esp-6);
+  font-size: var(--tamanho-md);
+}
+
+.botao--largura-total {
+  width: 100%;
+}
+
+.botao--primario {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-contraste);
+
+  &:hover:not(:disabled) {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+  }
+}
+
+.botao--secundario {
+  background-color: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+
+  &:hover:not(:disabled) {
+    background-color: var(--surface-2);
+    border-color: var(--border-forte);
+  }
+}
+
+.botao--fantasma {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--text-2);
+
+  &:hover:not(:disabled) {
+    background-color: var(--surface-2);
+    color: var(--text);
+  }
+}
+
+.botao--perigo {
+  background-color: transparent;
+  border-color: var(--negative);
+  color: var(--negative);
+
+  &:hover:not(:disabled) {
+    background-color: var(--negative-suave);
+  }
+}
+
+.botao__conteudo:empty {
+  display: none;
+}
+
+.botao__girador {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--raio-pilula);
+  animation: girar 620ms linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
